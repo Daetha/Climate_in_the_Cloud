@@ -43,8 +43,7 @@ The scope of my work covers weather sensing data and IoT data that are connectab
 
 Let me highlight the top articles in the research area. In my opinion, these 3 articles will give you the best glimpse into the research field. For simply access I provide doi links, and for academic integrity i attach citations in Harvard style. 
 
-My favorite literature review of NoSQL research is written by Khan, and colleagues in 2023. As a good SRL this one makes you admire how much has been done in the field. And choose yourself an area of focus. Available at: https://doi.org/10.3390/bdcc7020097.
-![image](https://github.com/Daetha/Climate_in_the_Cloud/assets/72041798/f45f5ddd-d75c-49b9-93af-d8bc510b8f41)
+My favorite literature review of NoSQL research is written by Khan, and colleagues in 2023. As a good SRL this one makes you admire how much has been done in the field. And choose yourself an area of focus. Lian, J., McGuire, M.P. and Moore, T.W. (2017) ‘FunnelCloud: a cloud-based system for exploring tornado events’, International Journal of Digital Earth, 10(10), pp. 1030–1054. Available at: https://doi.org/10.1080/17538947.2017.1279235.![image](https://github.com/Daetha/Climate_in_the_Cloud/assets/72041798/0e339fef-b3ac-431e-a606-b2d63fe62656)
 
 Application in form of software regarding very dangerous events is called FunnelCloud. It's a cloud-based system for exploring tornado events. FunnelCloud: a cloud-based system for exploring tornado events. Scientists integrate sparce data into a MongoDB NoSQL database. Scientist can explore spacio-temporal patterns via is connected web interface.
 
@@ -60,11 +59,14 @@ https://doi.org/10.1080/17538947.2017.1279235![image](https://github.com/Daetha/
 
 ## Data Collection
 
-Explain how you collected data from the Deutscher Wetterdienst.
+the question What dimensions of data do we want to access corresponds to the questions What aspects of ETL are we going to modify. A sampling of stations occurs in changing metadata file, that serves as a knowledge layer of ETL pipeline. Selection of measurements occurs when preparing a set of directories. ETL prepare script is capable to automatically parse data of all categories of selected granularity. The default is 1 hour. To modify this behaviour, coder can restructure the target url. 
 
 ## Data Transformation
 
-Describe the process of transforming the data for compatibility with AWS.
+First of all, on dwd data is supplied in zip archives. ISo, the ETL unarchives them, selects sta(https://opendata.dwd.de/climate_environment/CDC/observations_germany/climate/hourly/![image](https://github.com/Daetha/Climate_in_the_Cloud/assets/72041798/19e2aa77-73fc-4bb0-a04a-f8eacfc2cd0a)
+)
+Then, files for each tipe of measurement -- essentially type of sensors -- be it air temperature, humidity or cloudiness -- are written into respectful folder. At the end we have the same folder structure as in DWD filestorage, but unarchived and without unnecessary metadata. Metadata is stored separately. only txt files from 
+
 
 ## AWS Integration
 

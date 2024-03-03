@@ -1,18 +1,12 @@
 
----
-title: "Data Integration from Deutscher Wetterdienst to AWS"
-author: "Alex Torkhov"
-date: "Date"
-output:
-  pdf_document: default
-  html_document:
-    theme: cosmo
----
+# Data Integration from Deutscher Wetterdienst to AWS
+author: Alex Torkhov
+
 
 # Abstract
 The market of climate data is full of measurements but unscalable. Big old institutions supply data with high quality, long history and awesome granularity. However, you won't be able to use it in your application or near-real-time analytics. German Meteorological Service (DWD) has wonderful data, but it is so hard to consume. 
 The problem is with manual data retrieval, sophisticated API structure and file-system storage. A solution is going to be a database that would integrate sparse resources under a cloud computing platform. I, therefore, designed an ETL script to enjoy climate data on Amazon Web Services
-Which data product to use: SQL of NoSQL? Climate data fits under the idea of a time-series database, so I focus on AWS Timestream as a representative of columnar storage NoSQL. If we compare it with a relational database like MySQL, the performance depends on native functions. 
+Which data product to use: SQL or NoSQL? Climate data fits under the idea of a time-series database, so I focus on AWS Timestream as a representative of columnar storage NoSQL. If we compare it with a relational database like MySQL, the performance depends on native functions. 
 Timestream has capability to work with sparse data of time-series origin. Operations that work rates of change, interpolation, max_by are quite efficient. Timestream is found to be slower than MySQL on the most basic operations. So, hybrid database can be a valuable addition. 
 
 You are welcome to use and contribute to my last step towards Masters' in Data Science at UE
@@ -38,15 +32,29 @@ From a business standpoint, adding climate data can inform many decisions. The i
 
 ## Objectives
 
-Clearly state the goals of your data integration project.
-
+the goal of my data integration project is to create a middle layer between legacy file storage and AWS. Transitioning data is important to let data data access technologies. Technologies for BI, databases and automation.
+ 
 ## Scope
 
-Define the scope and limitations of your work.
+The scope of my work covers weather sensing data and IoT data that are connectable to the cloud. Either accessible through API or AWS IoT connector. Timestream presumes that data are stored as they are produced, so historical data or long-time series do not fall under the scope. Python is used as a programming language and computational loads as well as database access are configured using python. ![image](https://github.com/Daetha/Climate_in_the_Cloud/assets/72041798/9459a021-d6fa-420d-aa50-042da6109c82)
+
 
 # Literature Review
 
-Survey existing literature related to data integration, AWS, and meteorological data.
+Let me highlight the top articles in the research area. In my opinion, these 3 articles will give you the best glimpse into the research field. For simply access I provide doi links, and for academic integrity i attach citations in Harvard style. 
+
+My favorite literature review of NoSQL research is written by Khan, and colleagues in 2023. As a good SRL this one makes you admire how much has been done in the field. And choose yourself an area of focus. Available at: https://doi.org/10.3390/bdcc7020097.
+![image](https://github.com/Daetha/Climate_in_the_Cloud/assets/72041798/f45f5ddd-d75c-49b9-93af-d8bc510b8f41)
+
+Application in form of software regarding very dangerous events is called FunnelCloud. It's a cloud-based system for exploring tornado events. FunnelCloud: a cloud-based system for exploring tornado events. Scientists integrate sparce data into a MongoDB NoSQL database. Scientist can explore spacio-temporal patterns via is connected web interface.
+
+![image](https://github.com/Daetha/Climate_in_the_Cloud/assets/72041798/5bacfcf5-ebff-4ef0-bf89-c1d513476a8e)
+
+A very inspiring example that uses deep learning predicts urban climate in New York city. For me as a data engineer it is especially inteesting how authors augment existing temperature data with IoT data of higher granularity. The resulting model trained on an aggregated dataset outperforms alternatives. 
+From AWS standpoint, Sagemaker provides a platform to integrate data and train models like a notebook that can connect to AWS infrastructure and internet.
+
+https://doi.org/10.1080/17538947.2017.1279235![image](https://github.com/Daetha/Climate_in_the_Cloud/assets/72041798/d21aadb2-2a65-44a9-ba44-1155b5f6cad7)
+
 
 # Methodology
 

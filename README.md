@@ -5,9 +5,11 @@
 
 # Abstract
 
-In a climate data market saturated with measurements but lacking scalability, the German Meteorological Service (DWD) stands as a heavyweight with high-quality, historical, and finely-granulated data. However, accessing this wealth of information for applications or near-real-time analytics poses a formidable challenge due to manual retrieval, complex APIs, and file-system storage. The solution? A database harmonizing diverse resources under the expansive umbrella of a cloud computing platform. I present an ETL script that breathes life into climate data on Amazon Web Services (AWS).
+   In a climate data market saturated with measurements but lacking scalability, the German Meteorological Service (DWD) stands as a heavyweight with high-quality, historical, and finely-granulated data. However, accessing this wealth of information for applications or near-real-time analytics poses a formidable challenge due to manual retrieval, complex APIs, and file-system storage. The solution? A database harmonizing diverse resources under the expansive umbrella of a cloud computing platform. I present an ETL script that breathes life into climate data on Amazon Web Services (AWS).
+   The market size of cloud computing is predicted to reach 680 Billion U$D in 2024 according to Gartner at Statista, 2023. The size shows exponential growth since 2014. In such conditions climate data needs to follow the market and settle in a cloud. AWS is chosen as a representative platform. 
+   I acknowledge the help and guidance given by my scientific supervisor, Dr. Prof. Iftikhar Ahmed. And format understanding generously provided by Dr. Prof. Talha Alik Khan. A wonderfoul course taught by Claudia Wittman helped me write clearly. I transitioned knowledge from learning German into writing a scientific text. Thanks to my teachers and staff personal at UE University (University of Europe for Applied Science).
 
-**Choice of Data Product:** The dilemma between SQL and NoSQL unravels as climate data aligns seamlessly with the time-series database concept. AWS Timestream emerges as the representative NoSQL solution, offering columnar storage prowess. A hybrid database approach, combining Timestream with MySQL, is explored for optimal performance.
+**Choice of Data Product:** The dilemma between SQL and NoSQL unravels as climate data aligns seamlessly with the time-series database concept.    AWS Timestream emerges as the representative NoSQL solution, offering columnar storage prowess. A hybrid database approach, combining Timestream with MySQL, is explored for optimal performance.
 
 *Welcome to explore and contribute to my final stride towards a Masters' in Data Science at UE.*
 

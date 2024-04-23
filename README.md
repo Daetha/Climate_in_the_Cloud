@@ -21,9 +21,6 @@
 - [Challenges and Solutions](#challenges-and-solutions)
 - [Results](#results)
 - [Discussion](#discussion)
-- [Conclusion](#conclusion)
-- [References](#references)
-- [Appendices](#appendices)
 
 # Introduction
 
@@ -68,7 +65,7 @@ After setting up databases, I achieved a hybrid database format.
 
 ## Tools and Technologies
 
-Overal, in the project I used:
+Overall, in the project I used:
 1. Sagemaker
 2. Timestream
 3. RDS
@@ -76,13 +73,13 @@ Overal, in the project I used:
 5. Lambda
 
 Timestream is the least popular technology in the stack. Let me briefly describe it:
-Timestream treats metadata and data differently. In the present weather sensor application, sensor information is called dimension (longitude, lattitude, station name). While the actual weather observations are called measures (humidity, temperature). A quintessential part of any record is timestamp. And AWS Timestream promises to speed up data selection based on timestamp while preserving data control from SQL: filtering on dimensions (e.g. WHERE location = Potsdam') and aggregating measures (e.g. SELECT MIN (temperature)). 
-AWS Timestream is a good example of a NoSQL cloud database. It’s a column storage database tailored for time-series analysis. It supports SQL but joins between tables are not allowed. Schema flexibility means that same dimension might receive measures of different types. Partitioning is done based on one of dimension. Data modelling can reflect data usages pattern by allocating data that are frequently retrieved together into a same partition.
-Cloud availability gives Timestream more features. Among them Timestream utilizes Data lifecycle management: In-memory and Magnetic storage. The architecture is analogous to short- and long-term memory, so the database writes a record first in memory and later keeps the record magnetic. User sets retention rules, so a record can travel from in-memory storage to magnetic and be deleted automatically when time passes. Cloud environment enables Timestream encryption in-transit and at-rest. Data safety comes at handy when integration open-source databases with internal company data. Finally, cloud infrastructure enables customized interaction between client organization and climate service provider. Data stored in cloud database can be used for multiple purposes in outsourced projects. 
+   Timestream treats metadata and data differently. In the present weather sensor application, sensor information is called dimension (longitude, latitude, station name). While the actual weather observations are called measures (humidity, temperature). A quintessential part of any record is the timestamp. AWS Timestream promises to speed up data selection based on timestamp while preserving data control from SQL: filtering on dimensions (e.g. WHERE location = Potsdam') and aggregating measures (e.g. SELECT MIN (temperature)). 
+   AWS Timestream is a good example of a NoSQL cloud database. It’s a column storage database tailored for time-series analysis. It supports SQL but joins between tables are not allowed. Schema flexibility means that the same dimension might receive measures of different types. Partitioning is done based on one of dimensions. Data modelling can reflect data usage patterns by allocating data that are frequently retrieved together into a same partition.
+   Cloud availability gives Timestream more features. Among them Timestream utilizes Data lifecycle management: In-memory and Magnetic storage. The architecture is analogous to short- and long-term memory, so the database writes a record first in memory and later keeps the record magnetic. User sets retention rules, so a record can travel from in-memory storage to magnetic and be deleted automatically when time passes. Cloud environment enables Timestream encryption in-transit and at-rest. Data safety comes in handy when integrating open-source databases with internal company data. Finally, cloud infrastructure enables customized interaction between client organization and climate service provider. Data stored in cloud database can be used for multiple purposes in outsourced projects. 
 
 
 # Architecture
-A high-level overview of the implemented architecture for data integration.
+
 
 # Challenges and Solutions
 

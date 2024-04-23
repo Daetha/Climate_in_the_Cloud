@@ -63,28 +63,46 @@ DWD data, supplied in zip archives, undergoes unarchiving and station selection.
 ![DWD Data](https://opendata.dwd.de/climate_environment/CDC/observations_germany/climate/hourly/![image](https://github.com/Daetha/Climate_in_the_Cloud/assets/72041798/19e2aa77-73fc-4bb0-a04a-f8eacfc2cd0a))
 
 ## AWS Integration
-Detailing the steps taken to seamlessly integrate data into AWS services.
+If you are familiar with Jupyter notebooks, you can seamlessly start writing code in AWS Sagemaker. 
+After setting up databases, I achieved a hybrid database format. 
 
 ## Tools and Technologies
-List of tools and technologies employed in the integration process.
+
+Overal, in the project I used:
+1. Sagemaker
+2. Timestream
+3. RDS
+4. S3
+5. Lambda
+
+Timestream is the least popular technology in the stack. Let me briefly describe it:
+Timestream treats metadata and data differently. In the present weather sensor application, sensor information is called dimension (longitude, lattitude, station name). While the actual weather observations are called measures (humidity, temperature). A quintessential part of any record is timestamp. And AWS Timestream promises to speed up data selection based on timestamp while preserving data control from SQL: filtering on dimensions (e.g. WHERE location = Potsdam') and aggregating measures (e.g. SELECT MIN (temperature)). 
+AWS Timestream is a good example of a NoSQL cloud database. It’s a column storage database tailored for time-series analysis. It supports SQL but joins between tables are not allowed. Schema flexibility means that same dimension might receive measures of different types. Partitioning is done based on one of dimension. Data modelling can reflect data usages pattern by allocating data that are frequently retrieved together into a same partition.
+Cloud availability gives Timestream more features. Among them Timestream utilizes Data lifecycle management: In-memory and Magnetic storage. The architecture is analogous to short- and long-term memory, so the database writes a record first in memory and later keeps the record magnetic. User sets retention rules, so a record can travel from in-memory storage to magnetic and be deleted automatically when time passes. Cloud environment enables Timestream encryption in-transit and at-rest. Data safety comes at handy when integration open-source databases with internal company data. Finally, cloud infrastructure enables customized interaction between client organization and climate service provider. Data stored in cloud database can be used for multiple purposes in outsourced projects. 
+
 
 # Architecture
 A high-level overview of the implemented architecture for data integration.
 
 # Challenges and Solutions
-Navigate through encountered challenges and innovative solutions implemented during the integration process.
 
+In short, DWD data is a big challenge. My ambition is to make it more accessible.
+
+- **Challenge - Data Accessibility**: The data from the German Meteorological Service (DWD) was difficult to access due to manual retrieval, complex APIs, and file-system storage.
+    - **Solution - Automated Data Retrieval**: Scripts have been written in Python to automate the process of data retrieval from DWD. This includes fetching data from different subfolders and handling different types of measurements.
+- **Challenge - Data Integration**: Integrating diverse climate data sources into a unified, easily accessible format was a challenge.
+    - **Solution - Data Integration**: Python has been used to create a middle layer between the legacy file storage and AWS, facilitating seamless data access for BI, databases, and automation technologies.
+- **Challenge - Data Transformation**: The raw data from DWD came in zip archives and needed to be unarchived, categorized, and stored in a structured hierarchy.
+    - **Solution - Data Transformation**: An ETL pipeline has been implemented to transform the raw data into a structured format. This includes unarchiving the data, selecting stations, categorizing files into respective folders, and storing metadata separately.
 # Results
-Unveiling the outcomes of the data integration, showcasing any enhancements achieved.
+Novelties:
+- **Cloud-Based Climate Data**: The climate data has been moved to AWS, making it more accessible and scalable. This aligns with the growing trend of cloud computing.
+- **Hybrid Database Approach**: A hybrid database approach has been explored, combining AWS Timestream (a NoSQL solution) with MySQL for optimal performance.
+- **Data Sampling**: A method has been introduced to sample stations and measurements by modifying the metadata file and function calls.
+- **Granularity Selection**: A feature has been provided to select granularity in a URL, allowing for more precise data retrieval.
+
+Now the user (you and I) are in control of database. Not vice versa. Control which data you want to ETL and then query it. For NA-immune retrieval, interpolation and derivatives use Timestream, for more general purpose - MySQL
 
 # Discussion
-Analyzing results within the context of project objectives, discussing implications, and presenting recommendations for future endeavors.
 
-# Conclusion
-A succinct summary, reiterating the significance of the work undertaken.
-
-# References
-Citations and references to sources, tools, and frameworks referred to in this documentation.
-
-# Appendices
-Supplementary materials, code snippets, and additional information to support and enrich the documentation.
+Next up we'll automate data assimilation and introduce ML on top of database!
